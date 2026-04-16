@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VS Food Product — Pure. Natural. Homemade.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Tamil:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --cream: #FAF6EF;
+  --warm-white: #FFFDF8;
+  --gold: #C8922A;
+  --gold-light: #E8B84B;
+  --deep-green: #1E4D2B;
+  --mid-green: #2D7A45;
+  --light-green: #E8F4ED;
+  --earth: #6B4C2A;
+  --earth-light: #F0E6D6;
+  --text-dark: #1A1208;
+  --text-mid: #4A3728;
+  --text-soft: #8A7060;
+  --border: #E0D0B8;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-tamil: 'Noto Sans Tamil', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+/* ─── LANGUAGE MODAL ─── */
+.lang-overlay {
+  position: fixed; inset: 0;
+  background: rgba(30, 18, 8, 0.75);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+.lang-box {
+  background: var(--warm-white);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  width: 320px;
+  border: 1px solid var(--border);
+}
+.lang-box .leaf-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+.lang-box h2 { font-family: var(--font-display); font-size: 22px; color: var(--deep-green); margin-bottom: 6px; }
+.lang-box .subtitle { font-size: 14px; color: var(--text-soft); margin-bottom: 28px; font-family: var(--font-tamil); }
+.lang-btn {
+  width: 100%; padding: 14px; margin: 7px 0;
+  font-size: 15px; font-weight: 500; cursor: pointer;
+  border: 2px solid var(--deep-green); border-radius: 50px;
+  background: transparent; color: var(--deep-green);
+  transition: all 0.25s; font-family: var(--font-body);
+}
+.lang-btn:hover { background: var(--deep-green); color: #fff; }
+.lang-btn.tamil { font-family: var(--font-tamil); }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%;
+  z-index: 500;
+  background: rgba(250, 246, 239, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%;
+  height: 72px;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(200, 146, 42, 0.12); }
+.nav-logo { display: flex; align-items: center; gap: 12px; }
+.nav-logo img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+.nav-brand { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--deep-green); line-height: 1.1; }
+.nav-brand span { display: block; font-size: 11px; font-weight: 400; color: var(--text-soft); font-family: var(--font-body); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-mid); letter-spacing: 0.3px; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.25s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.lang-toggle-btn { padding: 8px 18px; border: 1.5px solid var(--deep-green); border-radius: 50px; background: transparent; font-size: 13px; font-weight: 500; color: var(--deep-green); cursor: pointer; transition: all 0.2s; }
+.lang-toggle-btn:hover { background: var(--deep-green); color: #fff; }
+.nav-social { display: flex; gap: 12px; }
+.nav-social a { color: var(--gold); font-size: 16px; text-decoration: none; transition: transform 0.2s; }
+.nav-social i { color: var(--gold); font-size: 16px; cursor: pointer; transition: transform 0.2s; }
+.nav-social a:hover i, .nav-social i:hover { transform: scale(1.2); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1E4D2B 0%, #2D7A45 50%, #1E4D2B 100%);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  padding: 100px 5% 60px;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 80%, rgba(200,146,42,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(200,146,42,0.1) 0%, transparent 50%);
+}
+.hero-badge { display: inline-block; background: rgba(200,146,42,0.2); border: 1px solid rgba(200,146,42,0.5); color: var(--gold-light); padding: 6px 20px; border-radius: 50px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; font-weight: 500; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(42px, 7vw, 86px); color: #fff; line-height: 1.05; margin-bottom: 24px; font-weight: 700; }
+.hero h1 span { color: var(--gold-light); display: block; }
+.hero p { max-width: 560px; margin: 0 auto 36px; font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+.hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { padding: 15px 36px; border-radius: 50px; background: var(--gold); color: #fff; font-size: 15px; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s; letter-spacing: 0.3px; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,146,42,0.4); }
+.btn-outline { padding: 15px 36px; border-radius: 50px; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); font-size: 15px; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.25s; }
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+.hero-stats { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 48px; }
+.hero-stat { text-align: center; color: rgba(255,255,255,0.7); }
+.hero-stat strong { display: block; font-size: 28px; font-family: var(--font-display); color: var(--gold-light); }
+.hero-stat span { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ─── SECTION HEADER ─── */
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-tag { display: inline-block; background: var(--light-green); color: var(--mid-green); padding: 5px 16px; border-radius: 50px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; margin-bottom: 14px; }
+.section-header h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 50px); color: var(--text-dark); line-height: 1.1; }
+.section-header p { max-width: 520px; margin: 14px auto 0; color: var(--text-soft); line-height: 1.7; font-size: 16px; }
+.section-divider { width: 60px; height: 3px; background: var(--gold); margin: 16px auto 0; border-radius: 2px; }
+
+/* ─── ABOUT ─── */
+.about-section { padding: 100px 5%; background: var(--warm-white); }
+.about-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-img-wrap { position: relative; }
+.about-img-wrap img { width: 100%; border-radius: 20px; object-fit: cover; height: 480px; }
+.about-img-badge { position: absolute; bottom: -20px; right: -20px; background: var(--gold); color: #fff; border-radius: 16px; padding: 20px 24px; text-align: center; font-family: var(--font-display); box-shadow: 0 8px 32px rgba(200,146,42,0.3); }
+.about-img-badge strong { display: block; font-size: 28px; }
+.about-img-badge span { font-size: 13px; font-weight: 400; opacity: 0.9; }
+.about-content .tag-line { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.about-content .tag-line .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.about-content .tag-line span { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.about-content h2 { font-family: var(--font-display); font-size: 42px; line-height: 1.1; color: var(--text-dark); margin-bottom: 20px; }
+.about-content p { font-size: 16px; line-height: 1.8; color: var(--text-mid); margin-bottom: 16px; }
+.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+.about-feature { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--cream); border-radius: 12px; border: 1px solid var(--border); }
+.about-feature i { color: var(--mid-green); font-size: 18px; margin-top: 2px; }
+.about-feature div strong { display: block; font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.about-feature div span { font-size: 13px; color: var(--text-soft); }
+
+/* ─── SERVICES ─── */
+.services-section { padding: 80px 5%; background: var(--deep-green); }
+.services-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.service-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.3s; }
+.service-card:hover { background: rgba(200,146,42,0.12); border-color: rgba(200,146,42,0.4); transform: translateY(-6px); }
+.service-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(200,146,42,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; transition: background 0.3s; }
+.service-card:hover .service-icon { background: rgba(200,146,42,0.35); }
+.service-icon i { font-size: 26px; color: var(--gold-light); }
+.service-card h3 { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+.service-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.services-section .section-header .section-tag { background: rgba(200,146,42,0.2); color: var(--gold-light); }
+.services-section .section-header h2 { color: #fff; }
+.services-section .section-header p { color: rgba(255,255,255,0.65); }
+
+/* ─── PRODUCTS ─── */
+.products-section { padding: 100px 5%; background: var(--cream); }
+.products-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.product-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+.product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(30,77,43,0.12); }
+.product-img { height: 220px; overflow: hidden; position: relative; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.product-card:hover .product-img img { transform: scale(1.06); }
+.product-badge { position: absolute; top: 14px; left: 14px; background: var(--deep-green); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+.product-info { padding: 24px; }
+.product-info h3 { font-family: var(--font-display); font-size: 21px; color: var(--text-dark); margin-bottom: 8px; }
+.product-info p { font-size: 14px; color: var(--text-soft); line-height: 1.6; margin-bottom: 16px; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-by { font-size: 12px; color: var(--text-soft); }
+.product-by span { color: var(--gold); font-weight: 500; }
+.product-arrow { width: 36px; height: 36px; border-radius: 50%; background: var(--light-green); display: flex; align-items: center; justify-content: center; transition: all 0.25s; cursor: pointer; border: none; }
+.product-card:hover .product-arrow { background: var(--mid-green); }
+.product-arrow i { font-size: 14px; color: var(--mid-green); transition: color 0.25s; }
+.product-card:hover .product-arrow i { color: #fff; }
+
+/* ─── PRODUCT POPUP ─── */
+.popup-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15, 43, 24, 0.65);
+  z-index: 800;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+  backdrop-filter: blur(6px);
+}
+.popup-overlay.active { opacity: 1; pointer-events: all; }
+.popup-box {
+  background: var(--warm-white);
+  border-radius: 22px;
+  width: 100%; max-width: 510px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 32px 80px rgba(15,43,24,0.25);
+}
+.popup-overlay.active .popup-box { transform: translateY(0) scale(1); }
+.popup-head {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--warm-white);
+}
+.popup-head-left { display: flex; align-items: center; gap: 14px; }
+.popup-emoji-wrap {
+  width: 50px; height: 50px; border-radius: 14px;
+  background: var(--light-green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.popup-head-info h3 { font-family: var(--font-display); font-size: 20px; color: var(--text-dark); margin-bottom: 2px; }
+.popup-head-info small { font-size: 12px; color: var(--text-soft); letter-spacing: 0.3px; }
+.popup-close-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-soft); font-size: 17px;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.popup-close-btn:hover { background: var(--cream); color: var(--text-dark); border-color: var(--text-soft); }
+.popup-items { padding: 16px 18px; max-height: 320px; overflow-y: auto; }
+.popup-items::-webkit-scrollbar { width: 4px; }
+.popup-items::-webkit-scrollbar-track { background: transparent; }
+.popup-items::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.popup-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 13px 15px; border-radius: 13px;
+  border: 1px solid var(--border);
+  margin-bottom: 10px; cursor: default;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--warm-white);
+}
+.popup-item:last-child { margin-bottom: 0; }
+.popup-item:hover { border-color: var(--mid-green); background: var(--light-green); }
+.popup-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--mid-green); flex-shrink: 0; margin-top: 5px; }
+.popup-item-body { flex: 1; }
+.popup-item-name { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+.popup-item-desc { font-size: 12px; color: var(--text-soft); line-height: 1.55; }
+.popup-item-tag { margin-left: auto; font-size: 10px; padding: 3px 10px; border-radius: 50px; background: var(--deep-green); color: #fff; flex-shrink: 0; height: fit-content; letter-spacing: 0.5px; font-weight: 500; margin-top: 2px; }
+.popup-foot {
+  padding: 14px 26px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--cream);
+}
+.popup-foot-contact { font-size: 12px; color: var(--text-soft); display: flex; align-items: center; gap: 6px; }
+.popup-foot-contact i { color: var(--mid-green); }
+.popup-order-btn { padding: 10px 24px; border-radius: 50px; background: var(--deep-green); color: #fff; font-size: 13px; font-weight: 500; border: none; cursor: pointer; transition: all 0.2s; letter-spacing: 0.3px; }
+.popup-order-btn:hover { background: var(--mid-green); transform: translateY(-1px); }
+
+/* ─── BRAND VALUES ─── */
+.values-section { padding: 100px 5%; background: var(--earth-light); }
+.values-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.value-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center; transition: all 0.3s; }
+.value-card:hover { border-color: var(--gold); box-shadow: 0 8px 32px rgba(200,146,42,0.15); }
+.value-emoji { font-size: 32px; margin-bottom: 14px; display: block; }
+.value-card h3 { font-size: 15px; font-weight: 500; color: var(--text-dark); margin-bottom: 8px; }
+.value-card p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+/* ─── CONTACT ─── */
+.contact-section { padding: 80px 5%; background: var(--warm-white); border-top: 1px solid var(--border); }
+.contact-inner { max-width: 900px; margin: 0 auto; background: var(--deep-green); border-radius: 24px; padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.contact-left h2 { font-family: var(--font-display); font-size: 36px; color: #fff; margin-bottom: 12px; }
+.contact-left p { color: rgba(255,255,255,0.7); line-height: 1.7; font-size: 15px; }
+.contact-right { display: flex; flex-direction: column; gap: 18px; }
+.contact-item { display: flex; align-items: center; gap: 16px; }
+.contact-item-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(200,146,42,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-item-icon i { color: var(--gold-light); font-size: 16px; }
+.contact-item-text { font-size: 14px; color: rgba(255,255,255,0.85); }
+.contact-item-text strong { display: block; font-size: 12px; color: var(--gold-light); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+
+/* ─── FOOTER ─── */
+footer { background: #0F2B18; padding: 56px 5% 28px; }
+.footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); margin-bottom: 16px; }
+.footer-brand h3 { font-family: var(--font-display); font-size: 20px; color: #fff; margin-bottom: 10px; }
+.footer-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 260px; }
+.footer-section h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); font-weight: 500; margin-bottom: 20px; }
+.footer-section a, .footer-section p { display: block; font-size: 14px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+.footer-section a:hover { color: var(--gold-light); }
+.footer-section a i { margin-right: 10px; color: var(--gold); font-size: 14px; }
+.footer-bottom { max-width: 1100px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.4); }
+.footer-bottom span { color: var(--gold-light); }
+.footer-socials { display: flex; gap: 12px; }
+.footer-socials a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); font-size: 14px; text-decoration: none; transition: all 0.2s; }
+.footer-socials a:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+/* ─── FADE IN ─── */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-img-badge { bottom: 12px; right: 12px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .contact-inner { grid-template-columns: 1fr; padding: 36px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .hero-stats { gap: 28px; }
+  .popup-box { margin: 0 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Language Modal -->
+<div class="lang-overlay" id="langModal">
+  <div class="lang-box">
+    <span class="leaf-icon">🌿</span>
+    <h2>VS Food Product</h2>
+    <p class="subtitle">மொழியைத் தேர்ந்தெடுக்கவும் · Select your language</p>
+    <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+    <button class="lang-btn tamil" onclick="setLang('ta')">🇮🇳 தமிழ்</button>
+  </div>
+</div>
+
+<!-- Product Popup -->
+<div class="popup-overlay" id="productPopup">
+  <div class="popup-box">
+    <div class="popup-head">
+      <div class="popup-head-left">
+        <div class="popup-emoji-wrap" id="popupEmoji">🧼</div>
+        <div class="popup-head-info">
+          <h3 id="popupTitle">Product</h3>
+          <small id="popupCount"></small>
+        </div>
+      </div>
+      <button class="popup-close-btn" onclick="closePopup()">✕</button>
+    </div>
+    <div class="popup-items" id="popupItems"></div>
+    <div class="popup-foot">
+      <div class="popup-foot-contact">
+        <i class="fa-solid fa-phone"></i>
+        <span>+91 9003528453</span>
+      </div>
+      <button class="popup-order-btn" onclick="window.location.href='tel:+919003528453'">
+        <i class="fa-solid fa-phone" style="margin-right:6px;font-size:11px"></i>Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    <img src="logo.jpg" alt="VS Food Product" onerror="this.style.display='none'">
+    <div class="nav-brand">
+      VS Food Product
+      <span data-en="Pure · Natural · Homemade" data-ta="தூய்மை · இயற்கை · வீட்டுத் தயாரிப்பு">Pure · Natural · Homemade</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home" data-en="Home" data-ta="முகப்பு">Home</a></li>
+    <li><a href="#about" data-en="About Us" data-ta="எங்களை பற்றி">About Us</a></li>
+    <li><a href="#products" data-en="Products" data-ta="பொருட்கள்">Products</a></li>
+    <li><a href="#contact" data-en="Contact" data-ta="தொடர்பு">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle-btn" id="langBtn">🌐 EN / தமிழ்</button>
+    <div class="nav-social">
+      <a href="https://www.instagram.com/v.s_food_products25?igsh=M3gyYXU4eXJ2cGF0" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1Hhmaoak3Z/"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="mailto:vsfoodproducts3@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero">
+  <div style="position:relative;z-index:1;text-align:center">
+    <div class="hero-badge" data-en="✦ Handcrafted with Love ✦" data-ta="✦ அன்புடன் கைத்தயாரிப்பு ✦">✦ Handcrafted with Love ✦</div>
+    <h1>
+      <span data-en="VS Food" data-ta="VS ஃபுட்">VS Food</span>
+      <span data-en="Product" data-ta="புராடக்ட்">Product</span>
+    </h1>
+    <p data-en="Pure, healthy, and naturally crafted homemade products — from our home to yours, made with tradition and care." data-ta="தூய்மையான, ஆரோக்கியமான, இயற்கையான வீட்டுத் தயாரிப்புகள் — எங்கள் வீட்டிலிருந்து உங்கள் வீட்டிற்கு, பாரம்பரியம் மற்றும் அக்கறையுடன் தயாரிக்கப்பட்டவை.">
+      Pure, healthy, and naturally crafted homemade products — from our home to yours, made with tradition and care.
+    </p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary" data-en="Explore Products" data-ta="பொருட்களை காண்க">Explore Products</a>
+      <a href="#about" class="btn-outline" data-en="Our Story" data-ta="எங்கள் கதை">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>5+</strong><span data-en="Product Lines" data-ta="தயாரிப்பு வகைகள்">Product Lines</span></div>
+    <div class="hero-stat"><strong>100%</strong><span data-en="Natural" data-ta="இயற்கை">Natural</span></div>
+    <div class="hero-stat"><strong>0</strong><span data-en="Chemicals" data-ta="இரசாயனங்கள்">Chemicals</span></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="about-section">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-up">
+      <img src="banner1.jpg" alt="VS Food Product" onerror="this.src='https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600&q=80'">
+      <div class="about-img-badge">
+        <strong>100%</strong>
+        <span data-en="Natural" data-ta="இயற்கை">Natural</span>
+      </div>
+    </div>
+    <div class="about-content fade-up">
+      <div class="tag-line"><div class="dot"></div><span data-en="Our Story" data-ta="எங்கள் கதை">Our Story</span></div>
+      <h2 data-en="Goodness from Our Home to Yours" data-ta="எங்கள் வீட்டிலிருந்து உங்கள் வீட்டிற்கு">Goodness from Our Home to Yours</h2>
+      <p data-en="VS Food Product is a homegrown brand dedicated to providing pure, healthy, and high-quality homemade products made with care and tradition. We specialize in natural soaps, hair care products, cosmetic items, homemade eatables, and tea products." data-ta="VS Food Product என்பது தூய்மையான மற்றும் ஆரோக்கியமான வீட்டுத் தயாரிப்புகளை வழங்கும் ஒரு சுதேசி பிராண்ட். இயற்கை சோப்புகள், கூந்தல் பராமரிப்பு, அழகுசாதனப் பொருட்கள், வீட்டில் தயாரிக்கப்பட்ட உணவுப் பொருட்கள் மற்றும் தேநீர் தயாரிப்புகள் ஆகியவை பாரம்பரிய முறைகளில் தயாரிக்கப்படுகின்றன.">
+        VS Food Product is a homegrown brand dedicated to providing pure, healthy, and high-quality homemade products made with care and tradition. We specialize in natural soaps, hair care products, cosmetic items, homemade eatables, and tea products.
+      </p>
+      <p data-en="All products are prepared using carefully selected ingredients and traditional methods. Our focus is on purity, freshness, and customer satisfaction — ensuring every product is safe, natural, and free from harmful chemicals." data-ta="அனைத்து தயாரிப்புகளும் கவனமாக தேர்ந்தெடுக்கப்பட்ட பொருட்கள் மற்றும் பாரம்பரிய முறைகளைப் பயன்படுத்தி தயாரிக்கப்படுகின்றன. தூய்மை, தரம் மற்றும் வாடிக்கையாளர் திருப்தியே எங்களின் முதன்மை நோக்கமாகும்.">
+        All products are prepared using carefully selected ingredients and traditional methods. Our focus is on purity, freshness, and customer satisfaction — ensuring every product is safe, natural, and free from harmful chemicals.
+      </p>
+      <div class="about-features">
+        <div class="about-feature"><i class="fa-solid fa-leaf"></i><div><strong data-en="100% Natural" data-ta="100% இயற்கை">100% Natural</strong><span data-en="No harsh chemicals" data-ta="தீங்கு விளைவிக்கும் இரசாயனங்கள் இல்லை">No harsh chemicals</span></div></div>
+        <div class="about-feature"><i class="fa-solid fa-hands"></i><div><strong data-en="Handcrafted" data-ta="கைத்தயாரிப்பு">Handcrafted</strong><span data-en="Made with care" data-ta="அக்கறையுடன் தயாரிக்கப்பட்டது">Made with care</span></div></div>
+        <div class="about-feature"><i class="fa-solid fa-shield-halved"></i><div><strong data-en="Safe & Pure" data-ta="பாதுகாப்பான & தூய்மையான">Safe & Pure</strong><span data-en="Tested ingredients" data-ta="சோதிக்கப்பட்ட பொருட்கள்">Tested ingredients</span></div></div>
+        <div class="about-feature"><i class="fa-solid fa-star"></i><div><strong data-en="Traditional" data-ta="பாரம்பரியம்">Traditional</strong><span data-en="Time-honoured recipes" data-ta="பாரம்பரிய சமையல் குறிப்புகள்">Time-honoured recipes</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="services-section">
+  <div class="section-header">
+    <div class="section-tag" data-en="Why Choose Us" data-ta="ஏன் எங்களை தேர்வு செய்யவும்">Why Choose Us</div>
+    <h2 data-en="We Make It Easy for You" data-ta="உங்களுக்கு எளிதாக்குகிறோம்">We Make It Easy for You</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fa-solid fa-truck-fast"></i></div>
+      <h3 data-en="Home Delivery" data-ta="வீட்டு விநியோகம்">Home Delivery</h3>
+      <p data-en="Fresh products delivered directly to your doorstep." data-ta="புதிய பொருட்களை நேரடியாக உங்கள் வீட்டு வாசலுக்கு கொண்டு வருகிறோம்.">Fresh products delivered directly to your doorstep.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+      <h3 data-en="Call to Order" data-ta="அழைத்து ஆர்டர் செய்யுங்கள்">Call to Order</h3>
+      <p data-en="One call is all it takes. We handle the rest with care." data-ta="ஒரு அழைப்பில் உங்கள் ஆர்டர் தயார். மீதி நாங்கள் கவனிப்போம்.">One call is all it takes. We handle the rest with care.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fa-solid fa-tag"></i></div>
+      <h3 data-en="Best Value" data-ta="சிறந்த மதிப்பு">Best Value</h3>
+      <p data-en="Premium quality products at honest, affordable prices." data-ta="நேர்மையான, மலிவு விலையில் உயர்தர தயாரிப்புகள்.">Premium quality products at honest, affordable prices.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 data-en="Secure Payment" data-ta="பாதுகாப்பான கட்டணம்">Secure Payment</h3>
+      <p data-en="Multiple safe and trusted payment options available." data-ta="பல பாதுகாப்பான மற்றும் நம்பகமான கட்டண வழிகள் கிடைக்கும்.">Multiple safe and trusted payment options available.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products" class="products-section">
+  <div class="section-header">
+    <div class="section-tag" data-en="What We Offer" data-ta="நாங்கள் வழங்குவது">What We Offer</div>
+    <h2 data-en="Our Product Collection" data-ta="எங்கள் தயாரிப்பு தொகுப்பு">Our Product Collection</h2>
+    <p data-en="Every item is handcrafted with natural ingredients, traditional recipes, and genuine love for your wellbeing." data-ta="ஒவ்வொரு பொருளும் இயற்கை பொருட்கள், பாரம்பரிய சமையல் குறிப்புகள் மற்றும் உங்கள் நலனில் உண்மையான அன்பால் கைத்தொழில் செய்யப்பட்டது.">Every item is handcrafted with natural ingredients, traditional recipes, and genuine love for your wellbeing.</p>
+    <div class="section-divider"></div>
+  </div>
+  <div class="products-grid">
+
+    <!-- Soap -->
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="Homemade Soap image.jpeg" alt="Homemade Soap" onerror="this.src='https://images.unsplash.com/photo-1607006344380-b6775a0824a7?w=400&q=80'">
+        <span class="product-badge" data-en="Handmade" data-ta="கைத்தயாரிப்பு">Handmade</span>
+      </div>
+      <div class="product-info">
+        <h3 data-en="Homemade Soap" data-ta="வீட்டில் தயாரிக்கப்பட்ட சோப்பு">Homemade Soap</h3>
+        <p data-en="Freshly made, naturally pure, and gentle on skin without harmful chemicals." data-ta="இயற்கையான முறையிலும், தூய்மையுடனும் தயாரிக்கப்பட்டது.">Freshly made, naturally pure, and gentle on skin without harmful chemicals.</p>
+        <div class="product-footer">
+          <div class="product-by">By <span>VS Food Product</span></div>
+          <button class="product-arrow" onclick="openPopup('soap')"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hair -->
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="hair image.webp" alt="Hair Products" onerror="this.src='https://images.unsplash.com/photo-1571781565036-d3f759be73e4?w=400&q=80'">
+        <span class="product-badge" data-en="Handmade" data-ta="கைத்தயாரிப்பு">Handmade</span>
+      </div>
+      <div class="product-info">
+        <h3 data-en="Hair Products" data-ta="முடி பராமரிப்பு பொருட்கள்">Hair Products</h3>
+        <p data-en="Traditionally inspired hair care that supports growth, strength, and shine naturally." data-ta="முடி வளர்ச்சி, வலிமை மற்றும் மினுமினுப்பை இயற்கையாக அதிகரிக்கும் பாரம்பரிய கூந்தல் பராமரிப்பு.">Traditionally inspired hair care that supports growth, strength, and shine naturally.</p>
+        <div class="product-footer">
+          <div class="product-by">By <span>VS Food Product</span></div>
+          <button class="product-arrow" onclick="openPopup('hair')"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cosmetics -->
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="Cosmetic Products.jpg" alt="Cosmetics" onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&q=80'">
+        <span class="product-badge" data-en="Handmade" data-ta="கைத்தயாரிப்பு">Handmade</span>
+      </div>
+      <div class="product-info">
+        <h3 data-en="Cosmetic Products" data-ta="அழகு சாதனப் பொருட்கள்">Cosmetic Products</h3>
+        <p data-en="Naturally crafted cosmetics that enhance beauty gently, without harsh chemicals." data-ta="தீங்கு விளைவிக்கும் இரசாயனங்கள் இல்லாமல் இயற்கையான அழகை மேம்படுத்தும் பொருட்கள்.">Naturally crafted cosmetics that enhance beauty gently, without harsh chemicals.</p>
+        <div class="product-footer">
+          <div class="product-by">By <span>VS Food Product</span></div>
+          <button class="product-arrow" onclick="openPopup('cosmetics')"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eatables -->
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="Eatable Items image.webp" alt="Eatable Items" onerror="this.src='https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&q=80'">
+        <span class="product-badge" data-en="Handmade" data-ta="கைத்தயாரிப்பு">Handmade</span>
+      </div>
+      <div class="product-info">
+        <h3 data-en="Eatable Items" data-ta="உணவுப் பொருட்கள்">Eatable Items</h3>
+        <p data-en="Fresh, hygienic, and homemade food prepared with pure, carefully chosen ingredients." data-ta="தூய்மையான, கவனமாக தேர்ந்தெடுக்கப்பட்ட பொருட்களுடன் வீட்டிலேயே தயாரிக்கப்பட்ட சுத்தமான உணவு.">Fresh, hygienic, and homemade food prepared with pure, carefully chosen ingredients.</p>
+        <div class="product-footer">
+          <div class="product-by">By <span>VS Food Product</span></div>
+          <button class="product-arrow" onclick="openPopup('eatables')"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tea -->
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="Tea Products image.jpg" alt="Tea Products" onerror="this.src='https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80'">
+        <span class="product-badge" data-en="Handmade" data-ta="கைத்தயாரிப்பு">Handmade</span>
+      </div>
+      <div class="product-info">
+        <h3 data-en="Tea Products" data-ta="தேயிலை பொருட்கள்">Tea Products</h3>
+        <p data-en="Carefully blended teas made from quality leaves for a refreshing, wholesome taste." data-ta="இயற்கையான சுவையுடன் கூடிய புத்துணர்ச்சியளிக்கும் தேயிலை பொருட்கள்.">Carefully blended teas made from quality leaves for a refreshing, wholesome taste.</p>
+        <div class="product-footer">
+          <div class="product-by">By <span>VS Food Product</span></div>
+          <button class="product-arrow" onclick="openPopup('tea')"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Brand Values -->
+<section class="values-section">
+  <div class="section-header">
+    <div class="section-tag" data-en="Our Promise" data-ta="எங்கள் வாக்குறுதி">Our Promise</div>
+    <h2 data-en="What We Stand For" data-ta="நாங்கள் எதை பிரதிநிதித்துவப்படுத்துகிறோம்">What We Stand For</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card fade-up"><span class="value-emoji">🌱</span><h3 data-en="Pure & Natural" data-ta="தூய்மை & இயற்கை">Pure & Natural</h3><p data-en="Honest ingredients, no shortcuts." data-ta="நேர்மையான பொருட்கள், குறுக்குவழிகள் இல்லை.">Honest ingredients, no shortcuts.</p></div>
+    <div class="value-card fade-up"><span class="value-emoji">❤️</span><h3 data-en="Made with Love" data-ta="அன்புடன் தயாரிக்கப்பட்டது">Made with Love</h3><p data-en="Warmth of home in every product." data-ta="ஒவ்வொரு தயாரிப்பிலும் வீட்டு அன்பு.">Warmth of home in every product.</p></div>
+    <div class="value-card fade-up"><span class="value-emoji">🌾</span><h3 data-en="Healthy Living" data-ta="ஆரோக்கியமான வாழ்க்கை">Healthy Living</h3><p data-en="Support a more natural lifestyle." data-ta="இயற்கையான வாழ்க்கை முறையை ஆதரிக்கிறோம்.">Support a more natural lifestyle.</p></div>
+    <div class="value-card fade-up"><span class="value-emoji">🏡</span><h3 data-en="Indian Tradition" data-ta="இந்திய பாரம்பரியம்">Indian Tradition</h3><p data-en="Rooted in timeless Indian heritage." data-ta="காலத்தால் அழியாத இந்திய பாரம்பரியத்தில் வேரூன்றியது.">Rooted in timeless Indian heritage.</p></div>
+    <div class="value-card fade-up"><span class="value-emoji">🔒</span><h3 data-en="Trusted Quality" data-ta="நம்பகமான தரம்">Trusted Quality</h3><p data-en="Safety and trust in every batch." data-ta="ஒவ்வொரு தொகுப்பிலும் பாதுகாப்பு மற்றும் நம்பிக்கை.">Safety and trust in every batch.</p></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2 data-en="Get in Touch" data-ta="தொடர்பு கொள்ளுங்கள்">Get in Touch</h2>
+      <p data-en="Want to order, ask a question, or just say hello? We'd love to hear from you. We're always happy to help." data-ta="ஆர்டர் செய்ய, கேள்வி கேட்க அல்லது வணக்கம் சொல்ல விரும்புகிறீர்களா? நாங்கள் உங்களிடமிருந்து கேட்க விரும்புகிறோம்.">
+        Want to order, ask a question, or just say hello? We'd love to hear from you. We're always happy to help.
+      </p>
+    </div>
+    <div class="contact-right">
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="contact-item-text"><strong data-en="Phone" data-ta="தொலைபேசி">Phone</strong>+91 9003528453</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="contact-item-text"><strong>Instagram</strong>@v.s_food_products25</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="contact-item-text"><strong data-en="Email" data-ta="மின்னஞ்சல்">Email</strong>vsfoodproducts3@gmail.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fa-brands fa-facebook-f"></i></div>
+        <div class="contact-item-text"><strong>Facebook</strong>Sri Jeeva Kaarunya</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="logo.jpg" alt="VS Food Product" onerror="this.style.display='none'">
+      <h3>VS Food Product</h3>
+      <p data-en="Natural, homemade products made with love and tradition. From our home to yours — pure, safe, and wholesome." data-ta="அன்பு மற்றும் பாரம்பரியத்துடன் தயாரிக்கப்பட்ட இயற்கையான, வீட்டில் தயாரிக்கப்பட்ட பொருட்கள்.">Natural, homemade products made with love and tradition. From our home to yours — pure, safe, and wholesome.</p>
+    </div>
+    <div class="footer-section">
+      <h4 data-en="Quick Links" data-ta="விரைவு இணைப்புகள்">Quick Links</h4>
+      <a href="#home" data-en="Home" data-ta="முகப்பு">Home</a>
+      <a href="#about" data-en="About Us" data-ta="எங்களை பற்றி">About Us</a>
+      <a href="#products" data-en="Products" data-ta="பொருட்கள்">Products</a>
+      <a href="#contact" data-en="Contact" data-ta="தொடர்பு">Contact</a>
+    </div>
+    <div class="footer-section">
+      <h4 data-en="Products" data-ta="பொருட்கள்">Products</h4>
+      <a href="#products" data-en="Homemade Soap" data-ta="வீட்டில் தயாரிக்கப்பட்ட சோப்பு">Homemade Soap</a>
+      <a href="#products" data-en="Hair Products" data-ta="முடி பராமரிப்பு">Hair Products</a>
+      <a href="#products" data-en="Cosmetics" data-ta="அழகு சாதனங்கள்">Cosmetics</a>
+      <a href="#products" data-en="Eatable Items" data-ta="உணவுப் பொருட்கள்">Eatable Items</a>
+      <a href="#products" data-en="Tea Products" data-ta="தேயிலை பொருட்கள்">Tea Products</a>
+    </div>
+    <div class="footer-section">
+      <h4 data-en="Contact" data-ta="தொடர்பு">Contact</h4>
+      <a href="tel:+919003528453"><i class="fa-solid fa-phone"></i>+91 9003528453</a>
+      <a href="https://www.instagram.com/v.s_food_products25?igsh=M3gyYXU4eXJ2cGF0" target="_blank"><i class="fa-brands fa-instagram"></i>@v.s_food_products25</a>
+      <a href="mailto:vsfoodproducts3@gmail.com"><i class="fa-solid fa-envelope"></i>vsfoodproducts3@gmail.com</a>
+      <p style="margin-top:8px;font-size:13px;color:rgba(255,255,255,0.4)"><i class="fa-solid fa-location-dot" style="margin-right:8px;color:var(--gold)"></i>22/MIG 9 Anna Nagar, Cuddalore-607001</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-en="© 2025 VS Food Product. All rights reserved. Design by MORALST." data-ta="© 2025 VS Food Product. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. வடிவமைப்பு: MORALST.">© 2025 VS Food Product. All rights reserved. Design by <span>MORALST</span>.</p>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/v.s_food_products25?igsh=M3gyYXU4eXJ2cGF0" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1Hhmaoak3Z/"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="mailto:vsfoodproducts3@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+let currentLang = 'en';
+const productData = {
+  soap: {
+    emoji: '🧼',
+    title: { en: 'Homemade Soap', ta: 'வீட்டில் தயாரிக்கப்பட்ட சோப்பு' },
+    items: [
+      { name: { en: 'Protein Bar', ta: 'புரதச் சத்து பார்' }, desc: { en: 'Protein-rich soap that repairs and strengthens hair, reduces breakage', ta: 'புரதம் நிறைந்த சோப்பு, முடியை வலுப்படுத்தி உடைவதை தடுக்கும்' } },
+      { name: { en: 'Biotean Bar', ta: 'பயோடீன் பார்' }, desc: { en: 'Biotin-enriched soap that promotes hair growth and scalp health', ta: 'பயோடின் கொண்ட சோப்பு, முடி வளர்ச்சி மற்றும் தலையணை ஆரோக்கியத்திற்கு உதவும்' } }
+    ]
+  },
+  hair: {
+    emoji: '💆',
+    title: { en: 'Hair Products', ta: 'முடி பராமரிப்பு பொருட்கள்' },
+    items: [
+      { name: { en: 'Cold Oil', ta: 'குளிர் எண்ணெய்' }, desc: { en: 'Cold-pressed oil blend that nourishes roots, reduces hair fall and promotes growth', ta: 'குளிரில் பிழிந்த எண்ணெய், வேர்களை வளர்க்கும், முடி உதிர்வை தடுக்கும்' }, tag: 'Best Seller' },
+      { name: { en: 'Golden Manjari Oil', ta: 'கோல்டன் மஞ்சரி எண்ணெய்' }, desc: { en: 'Herbal manjari-infused oil that adds lustre, nourishes and conditions hair', ta: 'மஞ்சரி கலந்த எண்ணெய், முடிக்கு பொலிவும் ஈரப்பதமும் சேர்க்கும்' } },
+      { name: { en: 'Svarma Oil', ta: 'ஸ்வர்மா எண்ணெய்' }, desc: { en: 'Ayurvedic blend for scalp purification, removes excess oil and impurities', ta: 'ஆயுர்வேத கலவை, தலையணை சுத்திகரிக்கும், அதிகப்படியான எண்ணெய் நீக்கும்' } },
+      { name: { en: 'Orange Turmeric Oil', ta: 'ஆரஞ்சு மஞ்சள் எண்ணெய்' }, desc: { en: 'Orange and turmeric oil that fights scalp infections and boosts hair regrowth', ta: 'ஆரஞ்சும் மஞ்சளும் கலந்த எண்ணெய், தலையணை தொற்றை எதிர்க்கும், மீண்டும் முடி வளர உதவும்' } },
+      { name: { en: 'Migranine Oil', ta: 'மைக்ரனின் எண்ணெய்' }, desc: { en: 'Cooling oil blend that relieves migraine, headaches and scalp tension', ta: 'குளிர்ச்சியான எண்ணெய் கலவை, தலைவலி, ஒற்றைத் தலைவலியை குறைக்கும்' } },
+      { name: { en: 'Velvel Oil', ta: 'வெல்வெல் எண்ணெய்' }, desc: { en: 'Smooth-texture oil that deeply moisturises hair strands and prevents frizz', ta: 'முடியை ஆழமாக ஈரப்படுத்தும், சுருட்டையை கட்டுப்படுத்தும்' } },
+      { name: { en: 'Vedic Oil', ta: 'வேதிக் எண்ணெய்' }, desc: { en: 'Ancient Vedic herbs blend that strengthens follicles and reverses premature greying', ta: 'வேத மூலிகை கலவை, முடி வேர்களை வலுப்படுத்தும், இளநரையை தடுக்கும்' } }
+    ]
+  },
+  cosmetics: {
+    emoji: '✨',
+    title: { en: 'Cosmetic Products', ta: 'அழகு சாதனப் பொருட்கள்' },
+    items: [
+     
+    ]
+  },
+  eatables: {
+    emoji: '🍱',
+    title: { en: 'Eatable Items', ta: 'உணவுப் பொருட்கள்' },
+    items: [
+       { name: { en: 'Healthy Laddus', ta: 'ஆரோக்கிய லட்டு' }, desc: { en: 'Nutritious herbal laddus packed with natural ingredients for skin glow and overall wellness', ta: 'இயற்கை மூலிகை லட்டு, சருமத்திற்கு பொலிவும் ஒட்டுமொத்த ஆரோக்கியமும் தரும்' }, tag: 'New' }
+    ]
+  },
+  tea: {
+    emoji: '🍵',
+    title: { en: 'Tea Products', ta: 'தேயிலை பொருட்கள்' },
+    items: [
+      { name: { en: 'Avarampoo Tea', ta: 'ஆவரம்பூ தேநீர்' }, desc: { en: 'Cassia flower tea that purifies blood, brightens skin and supports urinary health', ta: 'ஆவரம்பூ தேநீர், இரத்தத்தை சுத்தப்படுத்தும், சருமத்தை பொலிவடையச் செய்யும்' }, tag: 'Best Seller' },
+      { name: { en: 'Hibiscus Tea', ta: 'செம்பருத்தி தேநீர்' }, desc: { en: 'Tangy hibiscus tea rich in vitamin C, supports blood pressure and heart health', ta: 'வைட்டமின் C நிறைந்த செம்பருத்தி தேநீர், இரத்த அழுத்தம் மற்றும் இதய ஆரோக்கியத்திற்கு நல்லது' } },
+      { name: { en: 'Blue Pea Tea', ta: 'சங்குப்பூ தேநீர்' }, desc: { en: 'Butterfly pea flower tea that improves memory, enhances mood and rich in antioxidants', ta: 'நினைவாற்றலை மேம்படுத்தும், மனநிலையை சீராக்கும் ஆக்ஸிஜனேற்ற எதிர்ப்பு தேநீர்' } },
+      { name: { en: 'Herbal Tea', ta: 'மூலிகை தேநீர்' }, desc: { en: 'Curated blend of medicinal herbs for digestion, immunity and daily wellness', ta: 'மருத்துவ மூலிகை கலவை, ஜீரணம், நோய் எதிர்ப்பு சக்தி மற்றும் தினசரி ஆரோக்கியத்திற்கு' } },
+      { name: { en: 'Sugar Detox Tea', ta: 'சர்க்கரை டிடாக்ஸ் தேநீர்' }, desc: { en: 'Balances blood sugar levels, reduces sugar cravings and supports diabetic health', ta: 'இரத்த சர்க்கரையை சமன்படுத்தும், சர்க்கரை ஆசையை குறைக்கும், நீரிழிவுக்கு உதவும்' } },
+      { name: { en: 'Fat Burn Tea', ta: 'கொழுப்பு எரிக்கும் தேநீர்' }, desc: { en: 'Metabolism-boosting herbal blend that aids fat burning and supports weight management', ta: 'வளர்சிதை மாற்றத்தை அதிகரிக்கும், கொழுப்பை எரிக்க உதவும், உடல் எடை கட்டுப்படுத்தும்' }, tag: 'Best Seller' },
+      { name: { en: 'Java Plum Tea', ta: 'நாவல் பழ தேநீர்' }, desc: { en: 'Jamun-based tea that regulates blood sugar, improves digestion and kidney function', ta: 'நாவல் பழம் கொண்ட தேநீர், சர்க்கரை அளவை கட்டுப்படுத்தும், சிறுநீரகத்திற்கு நல்லது' } },
+      { name: { en: 'Immunity Tea', ta: 'நோய் எதிர்ப்பு தேநீர்' }, desc: { en: 'Powerful herb blend that strengthens the immune system and fights seasonal infections', ta: 'நோய் எதிர்ப்பு சக்தியை வலுப்படுத்தும், பருவகால தொற்றுகளை எதிர்க்க உதவும்' } },
+      { name: { en: 'Rose Petal Tea', ta: 'ரோஜா இதழ் தேநீர்' }, desc: { en: 'Fragrant rose petal tea that calms the mind, hydrates skin and relieves menstrual discomfort', ta: 'மனதை அமைதிப்படுத்தும், சருமத்தை ஈரப்படுத்தும், மாதவிடாய் வலியை குறைக்கும்' } },
+      { name: { en: 'Thulasi Tea', ta: 'துளசி தேநீர்' }, desc: { en: 'Sacred basil tea that relieves cold, cough, fever and respiratory congestion', ta: 'சளி, இருமல், காய்ச்சல் மற்றும் சுவாச பிரச்சனைகளை நீக்கும் புனித துளசி தேநீர்' } },
+      { name: { en: 'Guava Tea', ta: 'கொய்யா தேநீர்' }, desc: { en: 'Guava leaf tea that controls blood sugar, aids digestion and boosts platelet count', ta: 'இரத்த சர்க்கரையை கட்டுப்படுத்தும், ஜீரணத்திற்கு உதவும், பிளேட்லெட் அதிகரிக்கும்' } },
+      { name: { en: '5 Cold Tea', ta: '5 குளிர் தேநீர்' }, desc: { en: 'Five-herb blend specifically formulated for quick relief from cold, sore throat and congestion', ta: 'சளி, தொண்டை வலி மற்றும் மூக்கடைப்புக்கு விரைவாக நிவாரணம் தரும் ஐந்து மூலிகை கலவை' } }
+    ]
+  }
+};
+function openPopup(key) {
+  const data = productData[key];
+  const lang = currentLang;
+  document.getElementById('popupEmoji').textContent = data.emoji;
+  document.getElementById('popupTitle').textContent = data.title[lang] || data.title.en;
+  document.getElementById('popupCount').textContent = data.items.length + (lang === 'ta' ? ' வகைகள் கிடைக்கும்' : ' varieties available');
+
+  const container = document.getElementById('popupItems');
+  container.innerHTML = '';
+  data.items.forEach(item => {
+    const name = item.name[lang] || item.name.en;
+    const desc = item.desc[lang] || item.desc.en;
+    const tag = item.tag ? `<span class="popup-item-tag">${item.tag}</span>` : '';
+    const div = document.createElement('div');
+    div.className = 'popup-item';
+    div.innerHTML = `
+      <div class="popup-dot"></div>
+      <div class="popup-item-body">
+        <div class="popup-item-name">${name}</div>
+        <div class="popup-item-desc">${desc}</div>
+      </div>
+      ${tag}`;
+    container.appendChild(div);
+  });
+
+  document.getElementById('productPopup').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup() {
+  document.getElementById('productPopup').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('productPopup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+function applyLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerText = el.getAttribute('data-' + lang) || el.innerText;
+  });
+  document.documentElement.lang = lang === 'ta' ? 'ta' : 'en';
+  localStorage.setItem('vs_lang', lang);
+}
+
+function setLang(lang) {
+  applyLang(lang);
+  document.getElementById('langModal').style.display = 'none';
+}
+
+document.getElementById('langBtn').addEventListener('click', () => {
+  document.getElementById('langModal').style.display = 'flex';
+});
+
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+const saved = localStorage.getItem('vs_lang');
+if (saved) { applyLang(saved); document.getElementById('langModal').style.display = 'none'; }
+</script>
+</body>
+</html>
